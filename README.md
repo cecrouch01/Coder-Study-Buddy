@@ -37,6 +37,9 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 I used this link for my reset.css file (thanks Necolas):
 https://necolas.github.io/normalize.css/
 
+This is the link I used to help me create/understand nested array's
+https://dev.to/sanchithasr/understanding-nested-arrays-2hf7
+
 
 ## License
 
