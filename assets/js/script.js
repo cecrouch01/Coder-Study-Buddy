@@ -26,8 +26,6 @@ var questionBank = [
     correct: "Semantic HTML makes the HTML more comprehensible and accessible by better defining the different sections and layout of web pages"
     }
 ]
-var questionNumber = 0;
-var currentQuestion = questionBank[questionNumber];
 //This hides the quiz
 quiz.setAttribute("style", "display: none")
 //This starts the quiz and timer
@@ -49,15 +47,16 @@ var startQuiz = startButton.addEventListener("click", function(event) {
 
 //When a question is answered either user gets it correct and is given a new answer OR time is subtracted from the clock
 //This is the function that lets the user take the quiz itself
+function takeQuiz(questionNumber){
+var currentQuestion = questionBank[questionNumber];
 
 //This displays the question
 quizQuestion.innerText = currentQuestion.question
+
 //this creates the answer pool
 for (i = 0; i < currentQuestion.answerPool.length; i++) {        
     var btn = document.createElement("button");
-    btn.className = "button"
     btn.textContent = currentQuestion.answerPool[i];
-
     var div = document.getElementById("btn-div");
     div.appendChild(btn);
 
@@ -65,15 +64,24 @@ btn.addEventListener("click", function (event){
     event.preventDefault();
         if (event.target.textContent === currentQuestion.correct) {
         questionNumber += 1;
+        takeQuiz(questionNumber);
+        console.log("It is working")
         } else {
             secondsLeft -= 5;
         }
     })
-}    
-
+}
+if (questionNumber === questionBank.length -1) {
+    console.log("We Kinda did it")
+}
+} 
+takeQuiz(0);
     
 ///bugs found:
-//If answered wrong you can go below zero in the timer. 
+//If answered wrong you can go below zero in the timer.
+
+//TO DO
+//Add url and pictures to README
 
 //look up set attributes
 //play around with set interval on timers
