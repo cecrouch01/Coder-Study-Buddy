@@ -2,9 +2,31 @@
 // We need to have answers that correspond with the question
 // Oonce that is done look at adding arrays to arrays
 // use a randomizer to put the array in the question
-
+var quiz = document.querySelector("#quiz")
 var quizQuestion = document.querySelector(".question")
+var startButton = document.querySelector("#start-button")
+var timerEl = document.querySelector("#timer")
+var invite = document.querySelector("#invite")
+var secondsLeft = 30;
 
+quiz.setAttribute("style", "display: none")
+//This starts the quiz and timer
+var startQuiz = startButton.addEventListener("click", function(event) {
+    event.target = quiz.setAttribute("style", "display: block")
+    function setTime() {
+        var timerInterval = setInterval(function() {
+            secondsLeft--;
+            timerEl.textContent = secondsLeft;
+            if(secondsLeft === 0) {
+                clearInterval(timerInterval);
+                //I will need to put some end message here?
+            }
+        }, 1000);
+    }
+    event.target = setTime();
+    event.target = invite.setAttribute("style", "display: none")
+});
+//When a question is answered either user gets it correct and is given a new answer OR time is subtracted from the clock
 var questionBank = [
     { 
     question: "What character do we use to distinguish a class selector?", 
@@ -47,12 +69,11 @@ function createAnswerPool() {
     }
 }
 //this is adding an event listener to all buttons
-buttonList.addEventListener("click", function (event){
-if (event.target == document.querySelector("button")) {
-    question
-}
-})
-console.log(questionBank[0].correct[0])
+// buttonList.addEventListener("click", function (event){
+// if (event.target == document.querySelector("button")) {
+//     question
+// }
+// })
 
 //eventlistener to button box
 //if eventtarget = class then check value
