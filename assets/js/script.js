@@ -24,50 +24,59 @@ var questionBank = [
     }
 ]
 
+//This sets a class to all buttons
+var buttonList = document.querySelectorAll("button")
+buttonList.forEach((button => {
+    button.classList.add("button");
+})
+)
 
-
-//This gets a random question from the question bank
-// var randomQuizQuestion = [Math.floor(Math.random() * questionBank.length)]
-
+//This puts the question on the webpage
 quizQuestion.innerText = questionBank[0].question
-// console.log(questionBank[randomQuizQuestion].answerPool)
 
-//This connects the answer pool to answers A-D
-//Iterate answer pool
-//Put answer in the selected location
-//Randomize the answer selected
-//remove the answer selected from the iteration
-function randomizedAnswer() {
+//This creates the answer buttons
+function createAnswerPool() {
   
-    for (i = 0; i < questionBank[0].answerPool.length; i++) {
-        //This retrieves a random answer from the answer poop
-        // questionBank[randomQuizQuestion].answerPool[Math.floor(Math.random() * i)]
-        // quizAnswers.push(randomQuizQuestion.answerPool[i])
-        // console.log(quizAnswers)
-        // console.log(randomQuizQuestion.answerPool[i])
-        // Create button element:
-        
-        // This puts the answer pool into the buttons (non-randomized)
+    for (i = 0; i < questionBank[0].answerPool.length; i++) {        
         var btn = document.createElement("button");
         btn.textContent = questionBank[0].answerPool[i];
 
-        // // Append btn to div element:
-        var div = document.getElementById("btn-box")
+       
+        var div = document.getElementById("btn-div")
         div.appendChild(btn);  
-        // randomizedAnswerPool.splice(0 , 0, questionBank[randomQuizQuestion].answerPool[i]) 
     }
-  
 }
+//this is adding an event listener to all buttons
+buttonList.addEventListener("click", function (event){
+if (event.target == document.querySelector("button")) {
+    question
+}
+})
+console.log(questionBank[0].correct[0])
 
-//set a class to all buttons
 //eventlistener to button box
 //if eventtarget = class then check value
 //look up set attributes
 //play around with set interval on timers
 //do the thing that is required first
-randomizedAnswer();
+createAnswerPool();
 // console.log(questionBank[Math.floor(Math.random() * questionBank.length)])
 
 
 //This connects questions to their answer pools
 //once answers and questions are properly tied together then make sure that they can only appear once
+
+//This gets a random question from the question bank
+// var randomQuizQuestion = [Math.floor(Math.random() * questionBank.length)]
+
+//This connects the answer pool to answers A-D
+//Iterate answer pool
+//Put answer in the selected location
+
+        // questionBank[randomQuizQuestion].answerPool[Math.floor(Math.random() * i)]
+        // quizAnswers.push(randomQuizQuestion.answerPool[i])
+        // console.log(quizAnswers)
+        // console.log(randomQuizQuestion.answerPool[i])
+        // Create button element:
+
+                // randomizedAnswerPool.splice(0 , 0, questionBank[randomQuizQuestion].answerPool[i]) 
