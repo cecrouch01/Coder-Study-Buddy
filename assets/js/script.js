@@ -1,13 +1,12 @@
-// We need to be able to put question in the question area
-// We need to have answers that correspond with the question
-// Oonce that is done look at adding arrays to arrays
-// use a randomizer to put the array in the question
 var quiz = document.querySelector("#quiz")
 var quizQuestion = document.querySelector(".question")
 var startButton = document.querySelector("#start-button")
 var timerEl = document.querySelector("#timer")
 var invite = document.querySelector("#invite")
 var secondsLeft = 30;
+var recordedTime = localStorage.getItem("recordedTime")
+var scoreForm = document.querySelector("#high-score-form")
+var leaderBoard = document.querySelector("#leader-board")
 var questionBank = [
     { 
     question: "What character do we use to distinguish a class selector?", 
@@ -32,8 +31,12 @@ var questionBank = [
         correct: ""
     }
 ]
+
 //This hides the quiz
 quiz.setAttribute("style", "display: none")
+//This hides the high score form
+scoreForm.setAttribute("style", "display: none")
+
 //This starts the quiz and timer
 var startQuiz = startButton.addEventListener("click", function(event) {
     event.target = quiz.setAttribute("style", "display: block")
@@ -41,12 +44,13 @@ var startQuiz = startButton.addEventListener("click", function(event) {
         var timerInterval = setInterval(function() {
             secondsLeft--;
             timerEl.textContent = secondsLeft;
-            if(secondsLeft === 0) {
+            if(secondsLeft <= 0) {
                 clearInterval(timerInterval);
-                //I will need to put some end message here?
             }
+            //This will stop the timer when the quiz is finished. 
             if(questionNumber === questionBank.length - 1) {
                 clearInterval(timerInterval);
+                localStorage.setItem("recordedTime", secondsLeft)
             }
         }, 1000);
     }
@@ -54,6 +58,29 @@ var startQuiz = startButton.addEventListener("click", function(event) {
     event.target = invite.setAttribute("style", "display: none")
 });
 
+//This allows for the user to record their score undertheir initials. 
+function highScoreBoard () {
+    var scoreSubmit = document.querySelector("#high-score-submit")
+    var initials = document.querySelector("#initials");
+    quizQuestion.setAttribute("style", "display: none")
+    scoreForm.setAttribute("style", "display: block");
+    timerEl.setAttribute("style", "display: none");
+    invite.innerText = "Congratulations, your score is " + recordedTime + " please enter your intials and hit the submit button to save your score.";
+    invite.setAttribute("style", "display: block");
+    scoreSubmit.addEventListener("click", function(event) {
+        var displayInitials = document.createElement("li");
+        var recordedInitials = localStorage.getItem("initials")
+        event.preventDefault();
+        localStorage.setItem("initials", initials.value)
+        event.target = recordedInitials
+        displayInitials.textContent = recordedInitials + " " + recordedTime
+        event.target = leaderBoard.appendChild(displayInitials);
+    })
+
+
+}
+
+//This sets the first question
 var questionNumber = 0;
 //This is the function that lets the user take the quiz itself
 function takeQuiz(){
@@ -80,11 +107,13 @@ btn.addEventListener("click", function (event){
         var button = document.querySelectorAll(".button");
         for (i = 0; i < button.length; i++) {
             button[i].remove();
-            if (questionNumber === questionBank.length - 1){
-                console.log("we can move on");
-            }
         }
-        takeQuiz();
+        if (questionNumber === questionBank.length - 1){
+            highScoreBoard();
+        } else {
+            takeQuiz();
+        }
+        
         } else {
             secondsLeft -= 5;
         }
@@ -92,11 +121,9 @@ btn.addEventListener("click", function (event){
 }
 }
 
-
 takeQuiz();
     
-///bugs found:
-//If answered wrong you can go below zero in the timer.
+
 
 //TO DO
 //Add url and pictures to README
