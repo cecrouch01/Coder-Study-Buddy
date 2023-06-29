@@ -45,6 +45,9 @@ var startQuiz = startButton.addEventListener("click", function(event) {
                 clearInterval(timerInterval);
                 //I will need to put some end message here?
             }
+            if(questionNumber === questionBank.length - 1) {
+                clearInterval(timerInterval);
+            }
         }, 1000);
     }
     event.target = setTime();
