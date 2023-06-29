@@ -45,27 +45,33 @@ var startQuiz = startButton.addEventListener("click", function(event) {
     event.target = invite.setAttribute("style", "display: none")
 });
 
-//When a question is answered either user gets it correct and is given a new answer OR time is subtracted from the clock
+var questionNumber = 0;
 //This is the function that lets the user take the quiz itself
-function takeQuiz(questionNumber){
+function takeQuiz(){
 var currentQuestion = questionBank[questionNumber];
+var div = document.getElementById("btn-div");
 
-//This displays the question
+
+//This displays the current question of the quiz
 quizQuestion.innerText = currentQuestion.question
 
 //this creates the answer pool
-for (i = 0; i < currentQuestion.answerPool.length; i++) {        
+for (i = 0; i < currentQuestion.answerPool.length; i++) {     
     var btn = document.createElement("button");
     btn.textContent = currentQuestion.answerPool[i];
-    var div = document.getElementById("btn-div");
+    btn.className = "button";
     div.appendChild(btn);
 
 btn.addEventListener("click", function (event){
     event.preventDefault();
         if (event.target.textContent === currentQuestion.correct) {
         questionNumber += 1;
-        takeQuiz(questionNumber);
-        console.log("It is working")
+        //This removes the answer from the answer pool
+        var button = document.querySelectorAll(".button");
+        for (i = 0; i < button.length; i++) {
+            button[i].remove();
+        }
+        takeQuiz();
         } else {
             secondsLeft -= 5;
         }
@@ -75,7 +81,8 @@ if (questionNumber === questionBank.length -1) {
     console.log("We Kinda did it")
 }
 } 
-takeQuiz(0);
+
+takeQuiz();
     
 ///bugs found:
 //If answered wrong you can go below zero in the timer.
