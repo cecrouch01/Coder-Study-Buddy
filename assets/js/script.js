@@ -24,6 +24,12 @@ var questionBank = [
     answerPool: ["Semantic HTML makes the HTML more comprehensible and accessible by better defining the different sections and layout of web pages", "Semantic HTML is about giving meaning to class and I.D. selectors",
     "Semantic HTML doesn't have a actual purpose", "42"],
     correct: "Semantic HTML makes the HTML more comprehensible and accessible by better defining the different sections and layout of web pages"
+    },
+    {
+        //this must be the last question
+        question: "",
+        answerPool: [],
+        correct: ""
     }
 ]
 //This hides the quiz
@@ -64,12 +70,16 @@ for (i = 0; i < currentQuestion.answerPool.length; i++) {
 
 btn.addEventListener("click", function (event){
     event.preventDefault();
+    
         if (event.target.textContent === currentQuestion.correct) {
         questionNumber += 1;
         //This removes the answer from the answer pool
         var button = document.querySelectorAll(".button");
         for (i = 0; i < button.length; i++) {
             button[i].remove();
+            if (questionNumber === questionBank.length - 1){
+                console.log("we can move on");
+            }
         }
         takeQuiz();
         } else {
@@ -77,10 +87,8 @@ btn.addEventListener("click", function (event){
         }
     })
 }
-if (questionNumber === questionBank.length -1) {
-    console.log("We Kinda did it")
 }
-} 
+
 
 takeQuiz();
     
@@ -89,14 +97,3 @@ takeQuiz();
 
 //TO DO
 //Add url and pictures to README
-
-//look up set attributes
-//play around with set interval on timers
-//do the thing that is required first
- 
-// //This sets a class to all buttons (I DON'T THINK THIS PART IS NECESSARY)
-// var buttonList = document.querySelectorAll("button")
-// buttonList.forEach((button => {
-//     button.classList.add("button");
-// })
-// )
