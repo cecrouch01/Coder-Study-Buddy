@@ -11,10 +11,13 @@ N/A
 ## Installation
 
 Use the URL below to go to the website!
+https://cecrouch01.github.io/Coder-Study-Buddy/
 
 ## Usage
 
-Hit the start button. Then answer the questions to the best of you ability. For each wrong answer you will lose 5 seconds on your timer. After you are finished you will be able to enter your initials and the time that it took you to do the challenge will be recorded. 
+Hit the start button. Then answer the questions to the best of you ability. For each wrong answer you will lose 5 seconds on your timer. After you are finished you will be able to enter your initials and the time that it took you to do the challenge will be recorded. A picture is attached below to see how the webpage should look.
+
+![A picture of the deployed webpage Coder Study Buddy](assets/images/_C__Users_ccrouch_bootcamp_Challenges_Challenge-04_index.html.png)
 
 ## Credits
 

@@ -1,0 +1,78 @@
+:root {
+    --silver: #C0C0C0;
+    --spartanGreen: #18453B;
+    --white: #FFFFFF;
+    --black: #000000;
+    
+}
+
+body {
+    background-color: var(--silver);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #18453B;
+    color: var(--white);
+    border: 5px solid var(--black);
+    margin: 20px;
+}
+h1 {
+    text-align: center;
+}
+header p {
+    text-align: center;
+    width: 50%;
+}
+
+main {
+    text-align: center;
+    
+}
+#start-button {
+    width: 20%;
+    padding: 10px;
+    background-color: var(--spartanGreen);
+    color: var(--white);
+    border: 2px solid var(--black);
+}
+#invite {
+    margin: 20px;
+}
+#btn-div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button {
+    width: 50%;
+    height: auto;
+    padding: 5px;
+    margin: 5px;
+    background-color: var(--spartanGreen);
+    color: var(--white);
+    border: 2px solid var(--black);
+}
+
+#initial-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+li {
+    list-style: none;
+    
+}
+
+#high-score-submit {
+    width: 14%;
+    margin: 20px;
+    background-color: var(--spartanGreen);
+    color: var(--white);
+    border: 2px solid var(--black);
+}
