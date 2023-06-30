@@ -38,8 +38,8 @@ quiz.setAttribute("style", "display: none")
 scoreForm.setAttribute("style", "display: none")
 
 //This starts the quiz and timer
-var startQuiz = startButton.addEventListener("click", function(event) {
-    event.target = quiz.setAttribute("style", "display: block")
+var startQuiz = startButton.addEventListener("click", function() {
+    quiz.setAttribute("style", "display: block")
     function setTime() {
         var timerInterval = setInterval(function() {
             secondsLeft--;
@@ -54,8 +54,8 @@ var startQuiz = startButton.addEventListener("click", function(event) {
             }
         }, 1000);
     }
-    event.target = setTime();
-    event.target = invite.setAttribute("style", "display: none")
+    setTime();
+    invite.setAttribute("style", "display: none");
 });
 
 //This allows for the user to record their score undertheir initials. 
@@ -68,13 +68,18 @@ function highScoreBoard () {
     invite.innerText = "Congratulations, your score is " + recordedTime + " please enter your intials and hit the submit button to save your score.";
     invite.setAttribute("style", "display: block");
     scoreSubmit.addEventListener("click", function(event) {
-        var displayInitials = document.createElement("li");
-        var recordedInitials = localStorage.getItem("initials")
+        var displayScores = document.createElement("li");
+        var userInit = initials.value
+        var recordedScores = [
+            {recordedInitials: userInit,
+            score: recordedTime}
+        ];
+        localStorage.setItem("scores", JSON.stringify(recordedScores));
         event.preventDefault();
-        localStorage.setItem("initials", initials.value)
-        event.target = recordedInitials
-        displayInitials.textContent = recordedInitials + " " + recordedTime
-        event.target = leaderBoard.appendChild(displayInitials);
+        //Grader please tell me why this isn't working
+        var userDisplayScores = JSON.parse(localStorage.getItem("scores"));
+        displayScores.textContent = userDisplayScores.recordedInitials + " " + userDisplayScores.score;
+        leaderBoard.appendChild(displayScores);
     })
 
 
@@ -124,6 +129,3 @@ btn.addEventListener("click", function (event){
 takeQuiz();
     
 
-
-//TO DO
-//Add url and pictures to README
